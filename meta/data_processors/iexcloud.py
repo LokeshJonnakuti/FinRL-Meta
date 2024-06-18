@@ -8,6 +8,7 @@ import pytz
 import requests
 
 from meta.data_processors._base import _Base
+from security import safe_requests
 
 # from _base import _Base
 
@@ -74,8 +75,7 @@ class Iexcloud(_Base):
         for stock in ticker_list:
             end_point = f"{self.base_url}/stable/time-series/HISTORICAL_PRICES/{stock}"
 
-            response = requests.get(
-                url=end_point,
+            response = safe_requests.get(url=end_point,
                 params=query_params,
             )
             if response.status_code != 200:

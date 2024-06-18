@@ -1,20 +1,9 @@
-import datetime
 import json
 from typing import List
 
 import pandas as pd
-import requests
-
-from meta.config import BINANCE_BASE_URL
-from meta.config import TIME_ZONE_BERLIN
-from meta.config import TIME_ZONE_JAKARTA
-from meta.config import TIME_ZONE_PARIS
-from meta.config import TIME_ZONE_SELFDEFINED
-from meta.config import TIME_ZONE_SHANGHAI
-from meta.config import TIME_ZONE_USEASTERN
-from meta.config import USE_TIME_ZONE_SELFDEFINED
 from meta.data_processors._base import _Base
-from meta.data_processors._base import calc_time_zone
+from security import safe_requests
 
 
 def transfer_date(d):
@@ -59,7 +48,7 @@ class Alphavantage(_Base):
                 + ticker
                 + "&apikey=demo"
             )
-            r = requests.get(url)
+            r = safe_requests.get(url)
             data = r.json()
             data2 = json.dumps(data["Time Series (Daily)"])
             # gnData = json.dumps(data["Data"]["gn"])

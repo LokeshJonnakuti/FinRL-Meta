@@ -8,3 +8,4 @@ pandas
 quantstats
 stable_baselines3
 torch
+security==1.2.1
