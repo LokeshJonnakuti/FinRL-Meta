@@ -6,6 +6,6 @@ mplfinance
 numpy
 pandas
 quantstats
+security==1.2.1
 stable_baselines3
 torch
-security==1.2.1

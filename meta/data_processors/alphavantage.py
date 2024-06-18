@@ -2,8 +2,9 @@ import json
 from typing import List
 
 import pandas as pd
-from meta.data_processors._base import _Base
 from security import safe_requests
+
+from meta.data_processors._base import _Base
 
 
 def transfer_date(d):
