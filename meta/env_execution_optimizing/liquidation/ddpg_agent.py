@@ -1,8 +1,8 @@
 """Source: https://github.com/AI4Finance-Foundation/Liquidation-Analysis-using-Multi-Agent-Reinforcement-Learning-ICML-2019/blob/master/syntheticChrissAlmgren.py"""
+import secrets
 
 """Paper: Multi-agent reinforcement learning for liquidation strategy analysis accepted by ICML 2019 AI in Finance: Applications and Infrastructure for Multi-Agent Learning. (https://arxiv.org/abs/1906.11046)"""
 import copy
-import random
 from collections import deque
 from collections import namedtuple
 
@@ -39,7 +39,7 @@ class Agent:
         """
         self.state_size = state_size
         self.action_size = action_size
-        self.seed = random.seed(random_seed)
+        self.seed = secrets.SystemRandom().seed(random_seed)
 
         # Actor Network (w/ Target Network)
         self.actor_local = Actor(state_size, action_size, random_seed).to(device)
@@ -153,7 +153,7 @@ class OUNoise:
         self.mu = mu * np.ones(size)
         self.theta = theta
         self.sigma = sigma
-        self.seed = random.seed(seed)
+        self.seed = secrets.SystemRandom().seed(seed)
         self.reset()
 
     def reset(self):
@@ -164,7 +164,7 @@ class OUNoise:
         """Update internal state and return it as a noise sample."""
         x = self.state
         dx = self.theta * (self.mu - x) + self.sigma * np.array(
-            [random.random() for i in range(len(x))]
+            [secrets.SystemRandom().random() for i in range(len(x))]
         )
         self.state = x + dx
         return self.state
@@ -187,7 +187,7 @@ class ReplayBuffer:
             "Experience",
             field_names=["state", "action", "reward", "next_state", "done"],
         )
-        self.seed = random.seed(seed)
+        self.seed = secrets.SystemRandom().seed(seed)
 
     def add(self, state, action, reward, next_state, done):
         """Add a new experience to memory."""
@@ -196,7 +196,7 @@ class ReplayBuffer:
 
     def sample(self):
         """Randomly sample a batch of experiences from memory."""
-        experiences = random.sample(self.memory, k=self.batch_size)
+        experiences = secrets.SystemRandom().sample(self.memory, k=self.batch_size)
 
         states = (
             torch.from_numpy(np.vstack([e.state for e in experiences if e is not None]))

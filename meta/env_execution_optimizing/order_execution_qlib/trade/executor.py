@@ -1,6 +1,5 @@
 import json
 import os
-import random
 
 import agent
 import env
@@ -17,6 +16,7 @@ from tianshou.utils import tqdm_config
 from torch.utils.tensorboard import SummaryWriter
 from util import merge_dicts
 from vecenv import *
+import secrets
 
 
 def get_best_gpu(force=None):
@@ -42,7 +42,7 @@ def setup_seed(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     np.random.seed(seed)
-    random.seed(seed)
+    secrets.SystemRandom().seed(seed)
     torch.backends.cudnn.deterministic = True
 
 
