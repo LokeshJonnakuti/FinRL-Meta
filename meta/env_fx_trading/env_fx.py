@@ -1,5 +1,6 @@
 import datetime
 import math
+import secrets
 
 import gym
 import numpy as np
@@ -10,7 +11,6 @@ from stable_baselines3.common.vec_env import DummyVecEnv
 from meta.env_fx_trading.util.log_render import render_to_file
 from meta.env_fx_trading.util.plot_chart import TradingChart
 from meta.env_fx_trading.util.read_config import EnvConfig
-import secrets
 
 
 class tgym(gym.Env):
