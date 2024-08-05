@@ -13,6 +13,7 @@ import psutil
 from .EventReceiver import EventReceiver
 from .EventReceiver import EventSink
 from .WtLogger import WtLogger
+from security import safe_command
 
 
 def isWindows():
@@ -198,14 +199,12 @@ class AppInfo(EventSink):
         try:
             fullPath = os.path.join(self.__info__["folder"], self.__info__["param"])
             if isWindows():
-                self._procid = subprocess.Popen(
-                    [self.__info__["path"], fullPath],  # 需要执行的文件路径
+                self._procid = safe_command.run(subprocess.Popen, [self.__info__["path"], fullPath],  # 需要执行的文件路径
                     cwd=self.__info__["folder"],
                     creationflags=subprocess.CREATE_NEW_CONSOLE,
                 ).pid
             else:
-                self._procid = subprocess.Popen(
-                    [self.__info__["path"], fullPath],  # 需要执行的文件路径
+                self._procid = safe_command.run(subprocess.Popen, [self.__info__["path"], fullPath],  # 需要执行的文件路径
                     cwd=self.__info__["folder"],
                 ).pid
 
