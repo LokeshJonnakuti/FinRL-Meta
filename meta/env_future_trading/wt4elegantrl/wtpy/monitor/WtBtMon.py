@@ -19,12 +19,12 @@ import threading
 import time
 
 import psutil
+from security import safe_command
 from wtpy import WtDtServo
 
 from .EventReceiver import BtEventReceiver
 from .EventReceiver import BtEventSink
 from .WtLogger import WtLogger
-from security import safe_command
 
 
 def isWindows():
@@ -120,12 +120,17 @@ class WtBtTask(BtEventSink):
         try:
             fullPath = os.path.join(self.folder, "runBT.py")
             if isWindows():
-                self._procid = safe_command.run(subprocess.Popen, [sys.executable, fullPath],  # 需要执行的文件路径
+                self._procid = safe_command.run(
+                    subprocess.Popen,
+                    [sys.executable, fullPath],  # 需要执行的文件路径
                     cwd=self.folder,
                     creationflags=subprocess.CREATE_NEW_CONSOLE,
                 ).pid
             else:
-                self._procid = safe_command.run(subprocess.Popen, [sys.executable, fullPath], cwd=self.folder  # 需要执行的文件路径
+                self._procid = safe_command.run(
+                    subprocess.Popen,
+                    [sys.executable, fullPath],
+                    cwd=self.folder,  # 需要执行的文件路径
                 ).pid
 
             self._cmd_line = sys.executable + " " + fullPath
