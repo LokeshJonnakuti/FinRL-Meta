@@ -29,6 +29,7 @@ ray[default]==1.13.0
 
 # Model Building Requirements
 scikit-learn==1.1.1
+security==1.3.1
 
 # packaging
 setuptools==63.1.0
@@ -39,4 +40,3 @@ vectorbt[full]==0.23.3
 wheel==0.37.1
 wrds==3.1.1
 yfinance==0.1.72
-security==1.3.1

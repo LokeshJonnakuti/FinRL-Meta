@@ -3,6 +3,7 @@ import json
 from typing import List
 
 import pandas as pd
+from security import safe_requests
 
 from meta.config import BINANCE_BASE_URL
 from meta.config import TIME_ZONE_BERLIN
@@ -14,7 +15,6 @@ from meta.config import TIME_ZONE_USEASTERN
 from meta.config import USE_TIME_ZONE_SELFDEFINED
 from meta.data_processors._base import _Base
 from meta.data_processors._base import calc_time_zone
-from security import safe_requests
 
 
 def transfer_date(d):
