@@ -1,8 +1,8 @@
 """Source: https://github.com/AI4Finance-Foundation/Liquidation-Analysis-using-Multi-Agent-Reinforcement-Learning-ICML-2019/blob/master/syntheticChrissAlmgren.py"""
+import secrets
 
 """Paper: Multi-agent reinforcement learning for liquidation strategy analysis accepted by ICML 2019 AI in Finance: Applications and Infrastructure for Multi-Agent Learning. (https://arxiv.org/abs/1906.11046)"""
 import collections
-import random
 
 import numpy as np
 
@@ -49,7 +49,7 @@ class MarketEnvironment:
         lambd2=LLAMBDA2,
     ):
         # Set the random seed
-        random.seed(randomSeed)
+        secrets.SystemRandom().seed(randomSeed)
 
         # Initialize the financial parameters so we can access them later
         self.anv = ANNUAL_VOLAT
@@ -217,7 +217,7 @@ class MarketEnvironment:
             # Calculate the current stock price using arithmetic brownian motion
             info.price = self.prevImpactedPrice + np.sqrt(
                 self.singleStepVariance * self.tau
-            ) * random.normalvariate(0, 1)
+            ) * secrets.SystemRandom().normalvariate(0, 1)
 
         # If we are transacting, the stock price is affected by the number of shares we sell. The price evolves
         # according to the Almgren and Chriss price dynamics model.
