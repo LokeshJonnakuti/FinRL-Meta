@@ -1,5 +1,6 @@
 import json
 import os
+import secrets
 
 import agent
 import env
@@ -16,7 +17,6 @@ from tianshou.utils import tqdm_config
 from torch.utils.tensorboard import SummaryWriter
 from util import merge_dicts
 from vecenv import *
-import secrets
 
 
 def get_best_gpu(force=None):

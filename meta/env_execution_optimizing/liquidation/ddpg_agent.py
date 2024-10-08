@@ -1,8 +1,7 @@
 """Source: https://github.com/AI4Finance-Foundation/Liquidation-Analysis-using-Multi-Agent-Reinforcement-Learning-ICML-2019/blob/master/syntheticChrissAlmgren.py"""
-import secrets
 
-"""Paper: Multi-agent reinforcement learning for liquidation strategy analysis accepted by ICML 2019 AI in Finance: Applications and Infrastructure for Multi-Agent Learning. (https://arxiv.org/abs/1906.11046)"""
 import copy
+import secrets
 from collections import deque
 from collections import namedtuple
 
@@ -13,6 +12,8 @@ import torch.optim as optim
 
 from meta.env_execution_optimizing.liquidation.model import Actor
 from meta.env_execution_optimizing.liquidation.model import Critic
+
+"""Paper: Multi-agent reinforcement learning for liquidation strategy analysis accepted by ICML 2019 AI in Finance: Applications and Infrastructure for Multi-Agent Learning. (https://arxiv.org/abs/1906.11046)"""
 
 BUFFER_SIZE = int(1e4)  # replay buffer size
 BATCH_SIZE = 128  # minibatch size
