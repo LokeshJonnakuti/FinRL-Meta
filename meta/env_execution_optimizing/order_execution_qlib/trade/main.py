@@ -34,7 +34,7 @@ def get_full_config(config, dir_name):
         base_config = os.path.normpath(os.path.join(dir_name, config.pop("base")))
         dir_name = os.path.dirname(base_config)
         with open(base_config, "r") as f:
-            base_config = yaml.load(base_config, Loader=yaml.FullLoader)
+            base_config = yaml.load(base_config, Loader=yaml.SafeLoader)
         config = merge_dicts(base_config, config)
     return config
 
