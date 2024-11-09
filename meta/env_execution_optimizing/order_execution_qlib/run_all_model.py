@@ -116,7 +116,9 @@ def create_env():
 
 # function to execute the cmd
 def execute(cmd):
-    with safe_command.run(subprocess.Popen, cmd,
+    with safe_command.run(
+        subprocess.Popen,
+        cmd,
         stdout=subprocess.PIPE,
         bufsize=1,
         universal_newlines=True,
