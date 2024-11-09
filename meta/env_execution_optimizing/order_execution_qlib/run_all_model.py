@@ -26,6 +26,7 @@ from qlib.config import REG_CN
 from qlib.utils import exists_qlib_data
 from qlib.workflow import R
 from qlib.workflow.cli import workflow
+from security import safe_command
 
 
 # init qlib
@@ -115,8 +116,7 @@ def create_env():
 
 # function to execute the cmd
 def execute(cmd):
-    with subprocess.Popen(
-        cmd,
+    with safe_command.run(subprocess.Popen, cmd,
         stdout=subprocess.PIPE,
         bufsize=1,
         universal_newlines=True,
